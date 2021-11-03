@@ -1,5 +1,5 @@
 from time import time
-from rich import print
+# from rich import print
 
 def cascading(nums:list[int]) -> list[list[int]]:
     '''
@@ -33,8 +33,11 @@ def time_it(n: int) -> None:
     print(f'Time to compute the power set of {n} item is {time() - t1}')
 if __name__ == '__main__':
     nums = [1,2,3]
-    print(cascading(nums))
+    # print(cascading(nums))
     print(back_tracking(nums))
+    print(back_tracking([]))
 
-    for i in range(30): time_it(i)
+    print('helloworld'); print("hello again")
+
+    # for i in range(25): time_it(i)
 
