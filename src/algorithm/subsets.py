@@ -1,5 +1,4 @@
 from time import time
-
 from rich import print
 
 def cascading(nums:list[int]) -> list[list[int]]:
