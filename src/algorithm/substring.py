@@ -1,4 +1,4 @@
-def right_rotate_by_k_in_place(nums:list[int], k) ->None:
+def right_rotate_by_k_in_place(nums: list[int], k) -> None:
     '''
 
     :param nums:
@@ -18,7 +18,7 @@ def all_rotations(s: str) -> list[str]:
     >>> print(all_rotations('abc'))
     ['abc', 'bca', 'cab']
     '''
-    l, s = len(s), s*2
+    l, s = len(s), s * 2
     return [s[i: l + i] for i in range(l)]
 
 
@@ -72,9 +72,40 @@ def repeatedSubstringPattern(s: str) -> bool:
     '''
     if not s:        return False
     ss = (s + s)[1:-1]
-    return ss.find(str) != -1
+    return ss.find(s) != -1
 
-def reverse_words_in_place(s:str) ->None:
+
+def repeatedSubstringPattern_patter(s: str) -> str:
+    '''
+    If these is a repeated substring pattern, suppose the length is k
+    then after a k rotation, the new string should equal to the old string
+    if not, there is not this repeated substring pattern.
+
+    And this k is smaller than half of the length
+
+    :param s:
+    :return:
+    .. _target to  repeatedSubstringPattern
+
+    repeatedSubstringPattern
+    ~~~~~~~~~~~~~~~~~~~~~~~~
+    This is a O(n) function for computer repeat substring componet
+    eg::
+    >>> repeatedSubstringPattern_patter('abab')
+    ab
+    >>> repeatedSubstringPattern_patter('aba')
+
+    >>> repeatedSubstringPattern_patter('abcabcabcabc')
+    abc
+
+    '''
+    if not s:        return False
+    ss = (s + s)[1:-1]
+    i = ss.find(s)
+    return s[0:i + 1] if i != -1 else ''
+
+
+def reverse_words_in_place(s: str) -> None:
     '''
     Reverse the whole string and then reverse each word
     :param s:
@@ -92,5 +123,9 @@ def reverse_words_in_place(s:str) ->None:
     else:
         s[i: j + 1] = s[i: j + 1][::-1]  # j is length
 
+
 if __name__ == '__main__':
     print(all_rotations('abc'))
+    print(repeatedSubstringPattern_patter('abab'))
+    print(repeatedSubstringPattern_patter('aba'))
+    print(repeatedSubstringPattern_patter('abcabcabcabc'))
