@@ -21,6 +21,16 @@ def all_rotations(s: str) -> list[str]:
     l, s = len(s), s * 2
     return [s[i: l + i] for i in range(l)]
 
+def n_th_rotaton(s : str, a:str) -> int:
+    '''
+    return how many rotation to the right of s to make a
+    :param s:
+    :param a:
+    :return:
+    '''
+    return (s+s).find(a)
+
+
 
 def repeatedSubstringPattern_qudratic(s: str) -> bool:
     '''
@@ -74,7 +84,6 @@ def repeatedSubstringPattern(s: str) -> bool:
     ss = (s + s)[1:-1]
     return ss.find(s) != -1
 
-
 def repeatedSubstringPattern_patter(s: str) -> str:
     '''
     If these is a repeated substring pattern, suppose the length is k
@@ -100,6 +109,7 @@ def repeatedSubstringPattern_patter(s: str) -> str:
 
     '''
     if not s:        return False
+
     ss = (s + s)[1:-1]
     i = ss.find(s)
     return s[0:i + 1] if i != -1 else ''
