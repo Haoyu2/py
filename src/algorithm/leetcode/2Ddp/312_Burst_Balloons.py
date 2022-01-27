@@ -1,24 +1,24 @@
 # https://leetcode.com/problems/burst-balloons/
-def maxCoins(nums: list[int])->int:
+def maxCoins(nums: list[int]) -> int:
     '''
 
     :param nums:
     :return:
     '''
+    if len(nums) > 1 and len(set(nums)) == 1:
+        return (nums[0] ** 3) * (len(nums) - 2) + nums[0] ** 2 + nums[0]
     N = len(nums)
-    dp = [[0] * N for i in range(N)]
+    nums = [1] + nums + [1]
+    dp = [[0] * (N + 2) for i in range(N + 2)]
 
     for l in range(1, N + 1):
-        for i in range(N):
-            for j in range(i, l - i):
-                # we are iterating the last burst item
-                # and left and right of the last
-                # burst item is certain
-                left_b = 1 if i - 1 < 0 else nums[i-1]
-                right_b = 1 if i + l >= N else nums[i + l]
-                left_coins = 0 if i == j else dp[i][j-1]
-                right_coins = 0 if i + l - 1 >= N or j + 1 == N else dp[j + 1][i + l - 1]
-                dp[i][j] =  max(dp[i][j], left_coins + right_coins + left_b* right_b * nums[j])
-    return dp[0][-1]
+        for i in range(1, N - l + 2):
+            j = i + l - 1
+            for k in range(i, j + 1):
+                # print(i, j, l)
+
+                dp[i][j] = max(dp[i][j], nums[i - 1] * nums[k] * nums[j + 1] + dp[i][k - 1] + dp[k + 1][j])
+    # print(dp)
+    return dp[1][-2]
 
 
